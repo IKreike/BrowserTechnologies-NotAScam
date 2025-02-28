@@ -1,0 +1,42 @@
+:root{
+    --baseColor: white;
+    --mainAccentColor: rgb(255 201 23);
+    --secondAccentColor:rgb(0 48 130);
+    --mainTextColor:rgb(7 7 33);
+    --secondTextColor:rgb(131 131 144);
+
+    --alertColor:rgb(219 0 41);
+    --succesColor:rgb(0 154 66);
+}
+
+body{
+    background-color: var(--baseColor);
+    color: var(--mainTextColor);
+}
+
+fieldset{
+    /* border: none; */
+    margin-top: .5em;
+}
+
+li{
+    list-style-type: none;
+}
+
+/* de input velden, maar niet degene waar je een bestand moet uploaden */
+input:not([type=file]){
+    /* background-color: aqua; */
+    border:var(--secondTextColor) solid;
+    border-radius: .2em;
+}
+
+fieldset:nth-of-type(2) fieldset + fieldset {
+    background-color: red;
+    /* display: none; */
+}
+
+/* selecteerd de 1e fieldset (dit moet eigenlijk alle fieldsets erna zijn) na de 1e fieldset, als die de 2e optie heeft aangeklikt */
+fieldset:nth-of-type(2) fieldset:nth-of-type(1):has(li:nth-of-type(2) input:checked) + fieldset{
+    background-color: aqua;
+    /* display: block; */
+}
