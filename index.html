@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Erfbelasting Nederlandse Spoorwegen</title>
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
@@ -12,26 +12,33 @@
     <header>
         <!-- rainbow banner, text as background disclaimers -->
         <p>dit is een schoolproject</p>
+        <div>
+            <!-- could do this in svg? -->
+            <img src="./assets/Logo_NS_white.png" alt="">
+        </div>
     </header>
     <main>
         <h1>Erfbelasting aangifte 2023</h1>
-        <form action="">
+        <form>
+            <!-- ::before to add automatic numbering or an effect? -->
+            <h2>1. Gegevens van de overledene</h2>
             <fieldset>
                 <legend>1a</legend>
                 <fieldset>
                     <legend>Voorletter(s), tussen-voegsel(s) en achternaam overledene</legend>
-                    <li><label> Voornaam <input type="text" id="voorNaam" name="user_name" placeholder="Voornaam" required/></label></li>
-                    <li><label> tussenvoegsel(s) <input type="text" id="tussenvoegsels" name="user_name" placeholder="tussenvoegsel(s)" required/></label></li>
-                    <li><label>Achternaam<input type="text" id="achternaam" name="user_name" placeholder="Achternaam" required/></label></li>
+                    <!-- remove id's? -->
+                     <!-- use in li? should there be a ul element around it then -->
+                    <label> Voornaam: <input type="text" id="voorNaam" name="user_name" placeholder="Voornaam" required size="30" title="Voornaam overledene"></label>
+                    <label> tussenvoegsel(s): <input type="text" id="tussenvoegsels" name="user_name" placeholder="tussenvoegsel(s)" size="15" title="tussenvoegsels overledene"></label>
+                    <label>Achternaam: <input type="text" id="achternaam" name="user_name" placeholder="Achternaam" required size="30" title="Achternaam overledene"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Burgerservicenummer overledene</legend>
-                    <label>Burgerservicenummer <input type="text" id="Burgerservicenummer" name="user_name" required/></label>
+                    <label>Burgerservicenummer: <input type="text" id="Burgerservicenummer" name="user_name" required size="10" maxlength="9" pattern="[0-9]{9}" title="9 getallen burgerservicenummer"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Overlijdensdatum</legend>
-                    <label>Datum:<input type="date" required></label>
-                    <!-- kan niet in de toekomst -->
+                    <label>Datum: <input type="date" required max="2025-03-22"></label>
                 </fieldset>
             </fieldset>
 
@@ -40,34 +47,52 @@
                 <fieldset>
                     <legend>Was de overledene getrouwd of had de overledene een
                         geregistreerd partner op het moment van overlijden?</legend>
-                    <li><label> <input name="partner" type="radio">nee</label></li>
-                    <li><label> <input name="partner" type="radio">ja</label></li>
-                    <!-- alleen als er ja is geklikt, onthul de rest van de vragen in sectie 1b -->
+                    <li><label> <input name="partner" type="radio" required>nee</label></li>
+                    <li><label> <input name="partner" type="radio" id="uitklap">ja</label></li>
                 </fieldset>
-                <fieldset>
+                <!-- data-hidden is not currently being used -->
+                <fieldset data-hidden="yes">
                     <legend>Hadden de overledene en diens echtgenoot of
                         geregistreerd partner huwelijkse of partner schaps-
                         voorwaarden laten vast leggen in een notariële akte?</legend>
-                    <li><label> <input name="akte" type="radio">nee</label></li>
+                    <li><label> <input name="akte" type="radio" id="MoreForm1">nee</label></li>
                     <li><label> <input name="akte" type="radio">ja</label></li>
-                    <!-- alleen als je op ja klikt word je gevraagd een document in te vullen. -->
-                    <label> voeg een kopie van de akte in:<input type="file"></label>
                     <!-- alleen verplicht als er ja is ingevuld/ als hij zichtbaar is -->
+                    <label> voeg een kopie van de akte in:<input type="file"></label>
                 </fieldset>
-                <fieldset>
+                <fieldset data-hidden="yes">
                     <legend>Hadden de overledene en diens partner een finaal
                         verrekenbeding?</legend>
-                    <li><label> <input name="verrekenbeding" type="radio">nee</label></li>
-                    <li><label> <input name="verrekenbeding" type="radio">ja</label></li>
+                    <li><label> <input name="verrekenbeding" type="radio" id="MoreForm2">nee</label></li>
+                    <li><label> <input name="verrekenbeding" type="radio" >ja</label></li>
                 </fieldset>
-                <fieldset>
+                <fieldset data-hidden="yes">
                     <legend>Datum huwelijkse of partnerschapsvoorwaarden</legend>
-                    <label>Datum:<input type="date"></label>
-                    <!-- kan niet in de toekomst -->
+                    <label>Datum: <input type="date" max="2025-03-22" id="MoreForm3"></label>
                 </fieldset>
             </fieldset>
-
+            <input type="submit" value="Volgende">
+            <input type="reset" value="Reset voor debug">
+            <!-- progress bar? -->
+             <meter value=".2"></meter>
         </form>
+
+        <!-- the help thingy to the side? -->
+        <section>
+            <h2>help</h2>
+            <!-- why is there so much tekst for the first page, there must be a better way-->
+             <!-- details dingen? -->
+             <h3>1.1 wie zijn erfverkrijgers</h3>
+             <p>hele lap tekst</p>
+             <h3>1.2 echtgenoot of partner</h3>
+             <p>hele lap tekst</p>
+             <h3>1.3 wanneer</h3>
+             <p>hele lap tekst</p>
+             <h3>1.4 terugsturen</h3>
+             <p>hele lap tekst</p>
+             <h3>1.5 betalen</h3>
+             <p>relatief korte tekst</p>
+        </section>
     </main>
     <footer>
 
@@ -76,3 +101,7 @@
 </body>
 
 </html>
+
+
+<!-- data-for attriue in input (niet de enige manier, maar onderzoek)
+ :invalid , : user-invalid-->

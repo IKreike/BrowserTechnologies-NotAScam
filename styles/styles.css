@@ -1,42 +1,296 @@
-:root{
+:root {
     --baseColor: white;
     --mainAccentColor: rgb(255 201 23);
-    --secondAccentColor:rgb(0 48 130);
-    --mainTextColor:rgb(7 7 33);
-    --secondTextColor:rgb(131 131 144);
+    --secondAccentColor: rgb(0 48 130);
+    --mainTextColor: rgb(7 7 33);
+    --secondTextColor: rgb(131 131 144);
 
-    --alertColor:rgb(219 0 41);
-    --succesColor:rgb(0 154 66);
+    --alertColor: rgb(219 0 41);
+    --succesColor: rgb(0 154 66);
+
+    --rainbowColor: 0;
+    --padding:.5em;
 }
 
-body{
+/* hoe komt dit in de gitignore? */
+@font-face {
+    font-family: NSFake;
+    src: url(../assets/Fonts/Frutiger-Roman.ttf);
+}
+
+
+body {
     background-color: var(--baseColor);
     color: var(--mainTextColor);
+
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
-fieldset{
-    /* border: none; */
+/* ************** */
+/* header styling */
+/* ************** */
+
+header {
+    background-color: silver;
+    /* max-height: 6em; */
+
+    div {
+        max-width: 10%;
+        aspect-ratio: 3/4;
+        max-height: 6em;
+        position: absolute;
+        top: 0%;
+        left: 45%;
+        background-color: var(--secondAccentColor);
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    p {
+        color: hsl(var(--rainbowColor), 100%, 50%);
+        animation: headerDance 6s linear infinite;
+        font-size: 1.5em;
+        width: fit-content;
+        position: relative;
+    }
+}
+
+
+
+/* tip van sanne voor regenbogen */
+@property --rainbowColor {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 90;
+}
+
+@keyframes headerDance {
+    from {
+        /* transform: translateX(100%); */
+        left: 100%;
+        --rainbowColor: 0;
+    }
+
+    to {
+        /* transform: translateX(-100%); */
+        left: -50%;
+        --rainbowColor: 1800;
+    }
+}
+
+/* *{
+    border:solid red 1px;
+} */
+
+
+/* ************** */
+/* main styling */
+/* ************** */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+button,
+legend,
+li {
+    font-family: NSFake;
+}
+
+h1 {
+    background-color: var(--mainAccentColor);
+    padding: .5em;
+    margin: 0;
+}
+
+h2{
+    font-size: 1.5em;
+    padding-bottom: .5em;
+    border-bottom: var(--secondTextColor) 1px solid;
+    color: var(--secondAccentColor);
+}
+
+/* lijn onder de kopjes */
+form > fieldset > legend {
+    padding-bottom: .5em;
+    border-bottom: var(--secondTextColor) 1px solid;
+    color: var(--secondAccentColor);
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+fieldset > legend {
+    /* background-color: hotpink; */
+    font-size: 1.1em;
+}
+
+form {
+    justify-self: center;
+}
+
+fieldset {
     margin-top: .5em;
+    width: 85vw;
+    border: none;
+
+
+    padding-bottom: .5em;
+    /* maybe add an exception if the fieldset it the last of the set? */
+    border-bottom: var(--secondTextColor) 1px dashed;
 }
 
-li{
-    list-style-type: none;
+form > fieldset{
+    border-bottom: var(--secondTextColor) 1px solid;
 }
+
+legend {
+    max-width: 40ch;
+}
+
+/* li {
+    list-style-type: none;
+} */
+
+label:has(input:not([type=radio])){
+    margin-top: var(--padding);
+    display: block;
+}
+
+input[type=text]{
+    /* iets minder dan 100 want er moet ruimte overblijven voor het kruisje/ vinkje */
+    width: 90%;
+    /* add a max-width for scaling up to different screen sizes*/
+    /* max-width: 50em; */
+    padding:.5em;
+    margin-top: .2em;
+}
+
 
 /* de input velden, maar niet degene waar je een bestand moet uploaden */
-input:not([type=file]){
+input:not([type=file]) {
     /* background-color: aqua; */
-    border:var(--secondTextColor) solid;
+    border: var(--secondTextColor) solid;
     border-radius: .2em;
 }
 
-fieldset:nth-of-type(2) fieldset + fieldset {
-    background-color: red;
-    /* display: none; */
+/* Uitklap op pagina 1, dit kan waarschijnlijk beter met een klas of data-attributen */
+fieldset:nth-of-type(2) fieldset+fieldset {
+    display: none;
 }
 
 /* selecteerd de 1e fieldset (dit moet eigenlijk alle fieldsets erna zijn) na de 1e fieldset, als die de 2e optie heeft aangeklikt */
-fieldset:nth-of-type(2) fieldset:nth-of-type(1):has(li:nth-of-type(2) input:checked) + fieldset{
+fieldset:nth-of-type(2) fieldset:nth-of-type(1):has(li:nth-of-type(2) input:checked)~fieldset {
+    display: block;
+}
+
+/* styling the submit buttone */
+input[type=submit]{
+    display: block;
+    
+    font-size: 1.1em;
+    color: white;
+    background-color: var(--secondAccentColor);
+    border:none;
+    
+    padding: var(--padding);
+    margin:var(--padding);
+}
+
+
+/* ********************************* */
+/* form validation and user feedback */
+/* ********************************* */
+
+input:user-valid {
+    border: .2em var(--succesColor) solid;
+}
+
+label:has(input:user-valid)::after {
+    /* source: trying out a special svg encode thingy https://yoksel.github.io/url-encoder/ */
+    content: "";
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 425.68 354.97'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px;%0Afill:green; %7D %3C/style%3E%3C/defs%3E%3Cpolygon class='cls-1' points='354.26 .71 212.84 142.13 142.13 212.84 71.42 142.13 .71 212.84 71.42 283.55 142.13 354.26 212.84 283.55 283.55 212.84 424.97 71.42 354.26 .71'/%3E%3C/svg%3E");
+    /* to color it with a variable? */
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+
+    position: relative;
+    top:.2em;
+    margin-left: var(--padding);
+    
+}
+
+input:user-invalid {
+    border: .2em var(--alertColor) solid;
+}
+
+label:has(input:user-invalid)::after {
+    /* maak hier een plaatje / svg van? */
+    content: "";
+
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 354.97 354.97'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px;%0Afill:red; %7D %3C/style%3E%3C/defs%3E%3Cpolygon class='cls-1' points='283.55 .71 177.48 106.77 71.42 .71 .71 71.42 106.77 177.48 .71 283.55 71.42 354.26 177.48 248.19 283.55 354.26 354.26 283.55 248.19 177.48 354.26 71.42 283.55 .71'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; 
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+
+    position: relative;
+    top:.2em;
+    margin-left: var(--padding);
+}
+
+/* svg {
+    max-height: 1em;
+    background-color: blue;
+} */
+
+
+
+
+
+/* :invalid{
+    background-color: cadetblue;
+}
+
+:valid{
+    background-color:blanchedalmond;
+}
+:required{
     background-color: aqua;
-    /* display: block; */
+} */
+
+form:valid {
+    background-color: red;
+}
+
+
+
+/* ************ */
+/* help section */
+/* ************ */
+
+section {
+    display: none;
+    border: 5px solid var(--secondAccentColor);
+    /* padding: 1em; */
+    margin: 1em;
+
+    h2 {
+        background-color: var(--mainAccentColor);
+        padding: .5em;
+    }
 }
