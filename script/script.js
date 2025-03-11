@@ -28,3 +28,5 @@ function AddRequired() {
         changeRequired3.removeAttribute("required");
     }
 }
+// wat als jde javascript uit staat
+// fieldset disabled overwrites the requirements. disable fieldset while hidden so not relable on js?

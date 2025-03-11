@@ -195,6 +195,8 @@ fieldset:nth-of-type(2) fieldset+fieldset {
 fieldset:nth-of-type(2) fieldset:nth-of-type(1):has(li:nth-of-type(2) input:checked)~fieldset {
     display: block;
 }
+/* fieldset:disabled  */
+
 
 /* styling the submit buttone */
 input[type=submit]{
@@ -252,6 +254,8 @@ label:has(input:user-invalid)::after {
     top:.2em;
     margin-left: var(--padding);
 }
+
+
 
 /* svg {
     max-height: 1em;
