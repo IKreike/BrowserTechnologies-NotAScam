@@ -9,7 +9,7 @@
     --succesColor: rgb(0 154 66);
 
     --rainbowColor: 0;
-    --padding:.5em;
+    --padding:.5rem;
 }
 
 /* hoe komt dit in de gitignore? */
@@ -139,6 +139,7 @@ fieldset > legend {
 
 form {
     justify-self: center;
+    padding-inline: var(--padding);
 }
 
 fieldset {
@@ -148,8 +149,11 @@ fieldset {
 
 
     padding-bottom: .5em;
-    /* maybe add an exception if the fieldset it the last of the set? */
+    /* border-bottom: red 1px dashed; */
+    /* exception if the fieldset it the last of the set? */
+    fieldset:not(:nth-last-of-type(1)){
     border-bottom: var(--secondTextColor) 1px dashed;
+    }
 }
 
 form > fieldset{
@@ -157,13 +161,14 @@ form > fieldset{
 }
 
 legend {
-    max-width: 40ch;
+    max-width: 50ch;
 }
 
-/* li {
-    list-style-type: none;
-} */
 
+
+/* ************** */
+/* styling different inputs*/
+/* ************** */
 label:has(input:not([type=radio])){
     margin-top: var(--padding);
     display: block;
@@ -171,7 +176,7 @@ label:has(input:not([type=radio])){
 
 input[type=text]{
     /* iets minder dan 100 want er moet ruimte overblijven voor het kruisje/ vinkje */
-    width: 90%;
+    width: calc(90% - 1em);
     /* add a max-width for scaling up to different screen sizes*/
     /* max-width: 50em; */
     padding:.5em;
@@ -191,10 +196,15 @@ fieldset:nth-of-type(2) fieldset+fieldset {
     display: none;
 }
 
-/* selecteerd de 1e fieldset (dit moet eigenlijk alle fieldsets erna zijn) na de 1e fieldset, als die de 2e optie heeft aangeklikt */
-fieldset:nth-of-type(2) fieldset:nth-of-type(1):has(li:nth-of-type(2) input:checked)~fieldset {
-    display: block;
+/* selecteerd alle fieldsets na de 1e fieldset, als die de 2e optie heeft aangeklikt */
+fieldset:nth-of-type(2) fieldset:nth-of-type(1):has(input:checked)~fieldset {
+    /* display: block; */
+    display: flex;
+    flex-direction: column;
 }
+
+
+/* only possible with js? Is my solution currntly the best?*/
 /* fieldset:disabled  */
 
 
@@ -209,6 +219,10 @@ input[type=submit]{
     
     padding: var(--padding);
     margin:var(--padding);
+}
+
+input[type = radio], input[type = checkbox]{
+    accent-color: var(--secondAccentColor);
 }
 
 
@@ -288,13 +302,32 @@ form:valid {
 /* ************ */
 
 section {
-    display: none;
-    border: 5px solid var(--secondAccentColor);
-    /* padding: 1em; */
+    border: 2px solid var(--secondAccentColor);
     margin: 1em;
 
-    h2 {
+    h2{
         background-color: var(--mainAccentColor);
-        padding: .5em;
+        padding: var(--padding);
+        margin-top: 0;
+    }
+
+    h3, p{
+        padding-inline: var(--padding);
+    }
+}
+
+/* link naar de extra informatie */
+a{
+    padding-inline: var(--padding);
+    /* margin-inline: var(--padding); */
+
+    border: var(--secondAccentColor) 1px solid;
+    color: var(--secondAccentColor);
+    /* font-size: .8em; */
+
+    border-radius: 50em;
+
+    &:hover{
+        filter: brightness(0.8);
     }
 }
