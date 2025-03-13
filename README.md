@@ -14,3 +14,5 @@ https://yoksel.github.io/url-encoder/
 
 headache:
 https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+
+assume i used mdn for literally everyting

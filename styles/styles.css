@@ -147,6 +147,9 @@ fieldset {
     width: 85vw;
     border: none;
 
+    /* display: flex;
+    flex-direction: column; */
+
 
     padding-bottom: .5em;
     /* border-bottom: red 1px dashed; */
@@ -300,11 +303,15 @@ form:valid {
 /* ************ */
 /* help section */
 /* ************ */
-
 section {
+    --margin: 1em;
     border: 2px solid var(--secondAccentColor);
-    margin: 1em;
+    margin: var(--margin);
+    border-radius: var(--padding);
+    padding: 0;
 
+    max-height: calc(100dvh - (2 * var(--margin)));
+    
     h2{
         background-color: var(--mainAccentColor);
         padding: var(--padding);
@@ -314,10 +321,23 @@ section {
     h3, p{
         padding-inline: var(--padding);
     }
+
+    button {
+    font-size: 1.1em;
+    color: white;
+    background-color: var(--secondAccentColor);
+    border:none;
+    
+    padding: var(--padding);
+    margin:var(--padding);
+
+    border-radius: 5px;
+    }
 }
 
 /* link naar de extra informatie */
-a{
+input[type= button]{
+    content: "i";
     padding-inline: var(--padding);
     /* margin-inline: var(--padding); */
 
@@ -331,3 +351,9 @@ a{
         filter: brightness(0.8);
     }
 }
+
+::backdrop{
+    background-color: rgba(0, 0, 0, 0.316);
+    
+}
+

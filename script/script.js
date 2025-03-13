@@ -1,5 +1,22 @@
 console.log("hello world");
 
+
+// // json loading?
+// // https://stackoverflow.com/questions/7346563/loading-local-json-file
+//https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+// const dataToelichting = fetch("ExtraInfo.json")
+//   .then(response => response.json())
+//   .then(json => console.log(json))
+//   ;
+//   console.log(json)
+//   console.log(dataToelichting);
+
+// async function printJSON() {
+//     const response = await fetch("test.json");
+//     const json = await response.json();
+//     console.log(json);
+// }
+
 // required in het hidden formulier
 
 uitklap = document.querySelector("#uitklap");
@@ -113,3 +130,34 @@ function LoadData(){
 // So: the helps section (and the information links) should only be visible if the javascript is working
 
 // well shit
+
+
+
+toelichtingSection = document.querySelector("#toelichting")
+
+ToelichtingKnop = document.querySelector("#verrekenbedingToelichting")
+ToelichtingKnop.addEventListener("click", updateToelichting)
+
+// use this to add the (right amount) of content?
+// https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+
+
+function updateToelichting(){
+    console.log(this.id);
+    // console.log(json);
+    // voor elk ding in een array in een json?: 
+
+    // maak een element aan 
+    // const newElement = document.createElement("(soort element)");
+
+    // maak content aan
+    // const newContent = document.createTextNode("(tekst van de array)");
+
+    // stop de content in het element
+    // newElement.appendChild(newContent);
+
+    // selecteer een element (die al in de html staat)
+    // const currentDiv = document.getElementById("div1");
+    // zet de content ervoor in(in mijn geval misschien handiger dat het erna is, en let op de volgorde want het draait om als je meerdere keren het script draait)
+    // document.body.insertBefore(newDiv, currentDiv);
+}

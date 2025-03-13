@@ -1,4 +1,8 @@
 {
-    "1.1": [{"titel": "Wie zijn verkrijgers?", "paragraaf": "Voor de erfbelasting zijn er 4 soorten verkrijgers:"}],
-    "1.2": [{"titel": "Had de overledene een echtgenoot of geregistreerd partner?"}]
+    "verrekenbedingToelichting": [
+        "h3", "Finaal verrekenbeding",
+        "p", "Was de overledene getrouwd op huwelijkse voorwaarden? Of hadden de overledene en de partner een geregistreerd partnerschap en hadden zij partnerschapsvoorwaarden? Dan kan het zijn dat overledene en partner samen een finaal verrekenbeding hebben. Dit betekent dat bij overlijden het gezamenlijke vermogen verdeeld wordt op dezelfde manier als wanneer ze in gemeenschap van goederen waren getrouwd. Of op dezelfde manier als wanneer zij geen partner­ schaps­ voorwaarden hadden. Sommige zaken kunnen buiten deze verdeling gehouden worden, zoals het vermogen dat 1 van de partners al had voordat zij gingen trouwen.",
+        "p", "U vindt de informatie over een finaal verrekenbeding in de huwelijkse of partnerschapsvoorwaarden."
+    ],
+    "kinderenToelichting":"dingKinderen"
 }
