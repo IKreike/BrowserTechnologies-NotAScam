@@ -50,7 +50,7 @@ function AddRequired() {
         // fieldset1b3.disabled = false;
         // fieldset1b4.disabled = false;
 
-    } 
+    }
     else {
         changeRequired1.removeAttribute("required");
         changeRequired2.removeAttribute("required");
@@ -72,6 +72,8 @@ function AddRequired() {
 // i think this only made the problem worse because now without js there is no way to fill in the complete form.
 
 
+
+
 // tips form Jeremy (not all browesers support this?)
 // check in the start if the browser if it is possible other wise gtfo
 
@@ -89,35 +91,68 @@ function AddRequired() {
 // queryselector?
 
 
-// form headache: https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-const form = document.getElementById("form");
-document.addEventListener("click", getFormData);
+// // form headache: https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+// const form = document.getElementById("form");
+// document.addEventListener("click", getFormData);
 // const output = document.getElementById("output");
 
-function getFormData(){
-    // FormData()
-    // FormData.getAll()
+// function getFormData(){
+//     // FormData()
+//     // FormData.getAll()
 
-    const Formdata = new FormData(form);
-    // FormData.append()
-    // FormData.getAll(InputDeviceInfo);
-    console.log(Formdata)
-    const TextData = JSON.stringify(Formdata)
-    localStorage.setItem("data", TextData);
+//     const Formdata = new FormData(form);
+//     // FormData.append()
+//     // FormData.getAll(InputDeviceInfo);
+//     console.log(Formdata);
+//     const TextData = JSON.stringify(Formdata);
+//     console.log(TextData);
+//     localStorage.setItem("data", TextData);
 
 
-    // for (const [key, value] of Formdata) {
-    //     output.textContent += `${key}: ${value}\n`;
-    //   }
+//     // for (const [key, value] of Formdata) {
+//     //     output.textContent += `${key}: ${value}\n`;
+//     //   }
+// }
+
+// window.addEventListener("load", LoadData);
+
+// function LoadData(){
+//     const loadedInfo = localStorage.getItem("data");
+//     const NonTextData = JSON.parse(loadedInfo)
+//     console.log("load")
+//     console.log(NonTextData);
+//     // now to put it back in the documetn
+//     // for (const [key, value] of NonTextData) {
+//     //     output.textContent += `${key}: ${value}\n`;
+//     //   }
+// }
+
+
+// tips van vasilis
+// alle inputs
+var inps = document.querySelectorAll('input:not([type="radio"])');
+
+// voor elke input, als er interactie mee is doe de funtctie, en houdt bij welke vakje het is
+var i = 0;
+while(i < inps.length) {
+    inps[i].addEventListener("input",opslaan);
+    i++;
 }
 
-window.addEventListener("load", LoadData);
+document.addEventListener("DOMContentLoaded", loadInfo);
 
-function LoadData(){
-    const loadedInfo = localStorage.getItem("data");
-    const NonTextData = JSON.parse(loadedInfo)
-    console.log(NonTextData);
-    // now to put it back in the documetn
+// stop de naam en de value van het item waarvan ik het command heb gekregen in lokalstorage
+function opslaan(){
+    console.log(this.name);
+    localStorage.setItem(this.name, this.value);
+}
+
+function loadInfo(){
+    console.log("loadinfo")
+    // console.log(localStorage.getItem(key));
+// if(localStorage.getItem(this.name)){
+//     input.value = localStorage.getItem(this.name);
+// }
 }
 
 
@@ -131,33 +166,32 @@ function LoadData(){
 
 // well shit
 
+// toelichtingSection = document.querySelector("#toelichting")
+
+// ToelichtingKnop = document.querySelector("#verrekenbedingToelichting")
+// ToelichtingKnop.addEventListener("click", updateToelichting)
+
+// // use this to add the (right amount) of content?
+// // https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
 
 
-toelichtingSection = document.querySelector("#toelichting")
+// function updateToelichting(){
+//     console.log(this.id);
+//     // console.log(json);
+//     // voor elk ding in een array in een json?: 
 
-ToelichtingKnop = document.querySelector("#verrekenbedingToelichting")
-ToelichtingKnop.addEventListener("click", updateToelichting)
+//     // maak een element aan 
+//     // const newElement = document.createElement("(soort element)");
 
-// use this to add the (right amount) of content?
-// https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+//     // maak content aan
+//     // const newContent = document.createTextNode("(tekst van de array)");
 
+//     // stop de content in het element
+//     // newElement.appendChild(newContent);
 
-function updateToelichting(){
-    console.log(this.id);
-    // console.log(json);
-    // voor elk ding in een array in een json?: 
+//     // selecteer een element (die al in de html staat)
+//     // const currentDiv = document.getElementById("div1");
+//     // zet de content ervoor in(in mijn geval misschien handiger dat het erna is, en let op de volgorde want het draait om als je meerdere keren het script draait)
+//     // document.body.insertBefore(newDiv, currentDiv);
+// }
 
-    // maak een element aan 
-    // const newElement = document.createElement("(soort element)");
-
-    // maak content aan
-    // const newContent = document.createTextNode("(tekst van de array)");
-
-    // stop de content in het element
-    // newElement.appendChild(newContent);
-
-    // selecteer een element (die al in de html staat)
-    // const currentDiv = document.getElementById("div1");
-    // zet de content ervoor in(in mijn geval misschien handiger dat het erna is, en let op de volgorde want het draait om als je meerdere keren het script draait)
-    // document.body.insertBefore(newDiv, currentDiv);
-}

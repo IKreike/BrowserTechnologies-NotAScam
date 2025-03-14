@@ -195,21 +195,20 @@ input:not([type=file]) {
 }
 
 /* Uitklap op pagina 1, dit kan waarschijnlijk beter met een klas of data-attributen */
-fieldset:nth-of-type(2) fieldset+fieldset {
-    display: none;
-}
-
-/* selecteerd alle fieldsets na de 1e fieldset, als die de 2e optie heeft aangeklikt */
-fieldset:nth-of-type(2) fieldset:nth-of-type(1):has(input:checked)~fieldset {
-    /* display: block; */
+fieldset:nth-of-type(2) fieldset ~ fieldset {
     display: flex;
     flex-direction: column;
+}
+
+/* turn this around? complex hiding, simple showing (use not) */
+/* selecteerd alle fieldsets na de 1e fieldset, als die de 2e optie heeft aangeklikt */
+fieldset:nth-of-type(2) fieldset:nth-of-type(1):not(:has(input:checked))~fieldset {
+    display: none;
 }
 
 
 /* only possible with js? Is my solution currntly the best?*/
 /* fieldset:disabled  */
-
 
 /* styling the submit buttone */
 input[type=submit]{
@@ -232,9 +231,8 @@ input[type = radio], input[type = checkbox]{
 /* ********************************* */
 /* form validation and user feedback */
 /* ********************************* */
-
 input:user-valid {
-    border: .2em var(--succesColor) solid;
+    outline: .2em var(--succesColor) solid;
 }
 
 label:has(input:user-valid)::after {
@@ -254,7 +252,7 @@ label:has(input:user-valid)::after {
 }
 
 input:user-invalid {
-    border: .2em var(--alertColor) solid;
+    outline: .2em var(--alertColor) solid;
 }
 
 label:has(input:user-invalid)::after {
@@ -273,29 +271,20 @@ label:has(input:user-invalid)::after {
 }
 
 
+/* *********** */
+/* focus state */
+/* *********** */
 
-/* svg {
-    max-height: 1em;
-    background-color: blue;
-} */
-
-
-
-
-
-/* :invalid{
-    background-color: cadetblue;
+body :focus{
+    border: var(--mainAccentColor) 3px solid;
+    /* background-color: var(--mainAccentColor); */
+    filter: brightness(90%);
+    outline-offset: 2px;
 }
-
-:valid{
-    background-color:blanchedalmond;
-}
-:required{
-    background-color: aqua;
-} */
 
 form:valid {
     background-color: red;
+    /* boo! jumpscare. (If you are seeing this i forgot to remove it before delivering) */
 }
 
 
