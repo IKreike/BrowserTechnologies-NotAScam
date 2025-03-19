@@ -62,6 +62,23 @@ function AddRequired() {
 
     }
 }
+
+// adding document required only if the radio button is checked
+fieldset1b2 = document.querySelector("#fieldset1b2");
+fieldset1b2.addEventListener("click", fileRequired);
+
+addFile = document.querySelector("#addFile");
+
+function fileRequired(){
+    console.log("file required")
+    console.log(changeRequired1.checked);
+    if (changeRequired1.checked == true) {
+        addFile.setAttribute("required", "");
+    }
+    else {
+        addFile.removeAttribute("required");
+    }
+}
 // wat als jde javascript uit staat
 // fieldset disabled overwrites the requirements. disable fieldset while hidden so not relable on js?
 
@@ -129,31 +146,54 @@ function AddRequired() {
 
 
 // tips van vasilis
-// alle inputs
-var inps = document.querySelectorAll('input:not([type="radio"])');
-
+// alle inputs (eig alleen de text en datums)
+var inps = document.querySelectorAll('input:not([type=radio],[type = file],[type = checkbox],[type = submit],[type=button],[type=reset])');
+// could do radio buttons together with the checkbox but I think it is more annoying if it autofills incorrectly than if it doesnt at all
+var radinps = document.querySelectorAll("input[type=checkbox]")
 // voor elke input, als er interactie mee is doe de funtctie, en houdt bij welke vakje het is
 var i = 0;
-while(i < inps.length) {
-    inps[i].addEventListener("input",opslaan);
+var l = 0;
+while (i < inps.length) {
+    inps[i].addEventListener("input", opslaan);
     i++;
 }
+while (l < radinps.length) {
+    radinps[l].addEventListener("change", opslaanRad);
+    l++;
+}
 
-document.addEventListener("DOMContentLoaded", loadInfo);
+document.addEventListener("DOMContentLoaded", loadInfo, AddRequired, fileRequired);
 
-// stop de naam en de value van het item waarvan ik het command heb gekregen in lokalstorage
-function opslaan(){
-    console.log(this.name);
+// stop de naam en de value van het item waarvan ik het command heb gekregen in localstorage
+function opslaan() {
     localStorage.setItem(this.name, this.value);
 }
 
-function loadInfo(){
+function opslaanRad() {
+    localStorage.setItem(this.name, this.checked);
+}
+
+function loadInfo() {
     console.log("loadinfo")
     // console.log(localStorage.getItem(key));
-// if(localStorage.getItem(this.name)){
-//     input.value = localStorage.getItem(this.name);
-// }
+    // if(localStorage.getItem(this.name)){
+    //     input.value = localStorage.getItem(this.name);
+    // }
+
+
+    // http://w3schools.com/js/js_loop_for.asp
+    for (let k = 0; k < inps.length; k++) {
+        inps[k].value = localStorage.getItem(inps[k].name);
+    }
+
+    for (let m = 0; m < radinps.length; m++) {
+        // thank you copilot
+        radinps[m].checked = localStorage.getItem(radinps[m].name) === 'true';
+    }
+
 }
+
+
 
 
 // help section logic- written out

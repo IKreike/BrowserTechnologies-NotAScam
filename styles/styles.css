@@ -129,11 +129,9 @@ form > fieldset > legend {
     border-bottom: var(--secondTextColor) 1px solid;
     color: var(--secondAccentColor);
     width: 100%;
-    /* background-color: aqua; */
 }
 
 fieldset > legend {
-    /* background-color: hotpink; */
     font-size: 1.1em;
 }
 
@@ -147,13 +145,9 @@ fieldset {
     width: 85vw;
     border: none;
 
-    /* display: flex;
-    flex-direction: column; */
-
-
     padding-bottom: .5em;
-    /* border-bottom: red 1px dashed; */
-    /* exception if the fieldset it the last of the set? */
+
+    /* exception if the fieldset it the last of the set */
     fieldset:not(:nth-last-of-type(1)){
     border-bottom: var(--secondTextColor) 1px dashed;
     }
@@ -189,7 +183,6 @@ input[type=text]{
 
 /* de input velden, maar niet degene waar je een bestand moet uploaden */
 input:not([type=file]) {
-    /* background-color: aqua; */
     border: var(--secondTextColor) solid;
     border-radius: .2em;
 }
@@ -204,6 +197,21 @@ fieldset:nth-of-type(2) fieldset ~ fieldset {
 /* selecteerd alle fieldsets na de 1e fieldset, als die de 2e optie heeft aangeklikt */
 fieldset:nth-of-type(2) fieldset:nth-of-type(1):not(:has(input:checked))~fieldset {
     display: none;
+}
+
+fieldset:has(#MoreForm1:not(:checked)) label:has(#addFile){
+    display: none;
+}
+
+label:has(#addFile) {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type= file]{
+    /* background-color: hotpink; */
+    margin-block: var(--padding);
+    width: calc(90% - 1em);
 }
 
 
@@ -239,7 +247,6 @@ label:has(input:user-valid)::after {
     /* source: trying out a special svg encode thingy https://yoksel.github.io/url-encoder/ */
     content: "";
     background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 425.68 354.97'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px;%0Afill:green; %7D %3C/style%3E%3C/defs%3E%3Cpolygon class='cls-1' points='354.26 .71 212.84 142.13 142.13 212.84 71.42 142.13 .71 212.84 71.42 283.55 142.13 354.26 212.84 283.55 283.55 212.84 424.97 71.42 354.26 .71'/%3E%3C/svg%3E");
-    /* to color it with a variable? */
     background-repeat: no-repeat;
     display: inline-block;
     width: 1em;
@@ -256,7 +263,6 @@ input:user-invalid {
 }
 
 label:has(input:user-invalid)::after {
-    /* maak hier een plaatje / svg van? */
     content: "";
 
     background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 354.97 354.97'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px;%0Afill:red; %7D %3C/style%3E%3C/defs%3E%3Cpolygon class='cls-1' points='283.55 .71 177.48 106.77 71.42 .71 .71 71.42 106.77 177.48 .71 283.55 71.42 354.26 177.48 248.19 283.55 354.26 354.26 283.55 248.19 177.48 354.26 71.42 283.55 .71'/%3E%3C/svg%3E");
@@ -281,12 +287,6 @@ body :focus{
     filter: brightness(90%);
     outline-offset: 2px;
 }
-
-form:valid {
-    background-color: red;
-    /* boo! jumpscare. (If you are seeing this i forgot to remove it before delivering) */
-}
-
 
 
 /* ************ */
@@ -328,11 +328,9 @@ section {
 input[type= button]{
     content: "i";
     padding-inline: var(--padding);
-    /* margin-inline: var(--padding); */
 
     border: var(--secondAccentColor) 1px solid;
     color: var(--secondAccentColor);
-    /* font-size: .8em; */
 
     border-radius: 50em;
 

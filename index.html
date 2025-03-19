@@ -42,7 +42,7 @@
                 </fieldset>
                 <fieldset>
                     <legend>Overlijdensdatum</legend>
-                    <label>Datum: <input type="date" required max="2025-03-22"></label>
+                    <label>Datum: <input type="date" required max="2025-03-22" name="Overlijdensdatum"></label>
                 </fieldset>
             </fieldset>
 
@@ -56,15 +56,15 @@
                     <label> <input name="partner" type="checkbox" id="uitklap">ja</label>
                 </fieldset>
                 <!-- data-hidden is not currently being used -->
-                <fieldset data-hidden="yes">
+                <fieldset data-hidden="yes" id="fieldset1b2">
                     <legend>Hadden de overledene en diens echtgenoot of
                         geregistreerd partner huwelijkse of partner schaps-
                         voorwaarden laten vast leggen in een notariële akte?</legend>
-                    <label> <input name="akte" type="radio" id="MoreForm1">nee</label>
-                    <label> <input name="akte" type="radio">ja</label>
+                    <label> <input name="akte" type="radio">nee</label>
+                    <label> <input name="akte" type="radio" id="MoreForm1">ja</label>
                     <!-- alleen verplicht als er ja is ingevuld/ als hij zichtbaar is -->
                     <!-- style this -->
-                    <label> voeg een kopie van de akte in:<input type="file"></label>
+                    <label> voeg een kopie van de akte in:<input type="file" id="addFile"></label>
                 </fieldset>
                 <fieldset data-hidden="yes">
                     <legend>Hadden de overledene en diens partner een finaal
@@ -103,19 +103,19 @@
                     <p>U vindt de informatie over een finaal verrekenbeding in de
                         huwelijkse of partnerschapsvoorwaarden.</p>
                     <!-- add a button to close the thing, wat is beter een button of een iput button?-->
-                    <button popovertarget="toelichting" popovertargetaction="hide">Sluiten</button>
+                    <button type="button" popovertarget="toelichting" popovertargetaction="hide">Sluiten</button>
                     <!-- <input type="button" value="sluiten" popovertarget="toelichting" popovertargetaction="hide"> -->
                 </section>
 
                 <fieldset data-hidden="yes">
                     <legend>Datum huwelijkse of partnerschapsvoorwaarden</legend>
-                    <label>Datum: <input type="date" max="2025-03-22" id="MoreForm3"></label>
+                    <label>Datum: <input type="date" max="2025-03-22" id="MoreForm3" name="partnerschapsvoorwaarden"></label>
                 </fieldset>
             </fieldset>
             <input type="submit" value="Volgende">
-            <input type="reset" value="Reset voor debug">
+            <!-- <input type="reset" value="Reset voor debug"> -->
             <!-- progress bar? -->
-            <meter value=".2"></meter>
+            <!-- <meter value=".2"></meter> -->
         </form>
         <!-- in between a link to switch to different pages? -->
 
